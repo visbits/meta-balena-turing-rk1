@@ -10,14 +10,14 @@ SECTION = "kernel"
 LICENSE = "GPL-2.0-only"
 LIC_FILES_CHKSUM = "file://COPYING;md5=6bc538ed5bd9a7fc9398086aedcd7e46"
 
-LINUX_VERSION = "6.1.115"
+LINUX_VERSION = "6.1.118"
 LINUX_VERSION_EXTENSION = "-rockchip"
 
 PV = "${LINUX_VERSION}+git${SRCPV}"
 
 # Armbian's rockchip kernel with RK3588 Turing RK1 support
-SRCREV = "41da3e69e16b9de57eca897215e8b0adc6efdc8b"
-SRC_URI = "git://github.com/armbian/linux-rockchip.git;protocol=https;branch=rk-6.1-rkr5.1 \
+SRCREV = "576841cba905504f7ae23456d0c92b714d566a01"
+SRC_URI = "git://github.com/armbian/linux-rockchip.git;protocol=https;branch=rk-6.1-rkr6.1 \
     file://default-root.cfg \
 "
 
