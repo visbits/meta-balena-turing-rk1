@@ -1,0 +1,4 @@
+build/*
+shared-downloads
+*.log
+turing-rk1

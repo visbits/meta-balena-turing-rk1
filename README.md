@@ -1,5 +1,4 @@
 # Turing RK1 BalenaOS Build
-Token: BInF5eUnCrNFJSyyseH5pPqTimlmeDKU
 Custom BalenaOS distribution for the **Turing RK1** (Rockchip RK3588) compute module, built with Yocto/OpenEmbedded.
 
 ## Hardware Specifications

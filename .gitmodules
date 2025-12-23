@@ -18,3 +18,7 @@
 	path = layers/meta-arm
 	url = https://git.yoctoproject.org/meta-arm
 	branch = scarthgap
+[submodule "balena-yocto-scripts"]
+	path = balena-yocto-scripts
+	url = https://github.com/balena-os/balena-yocto-scripts
+	branch = master

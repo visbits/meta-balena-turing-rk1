@@ -1,23 +1,23 @@
 #!/bin/bash
 set -e
 
-# Build the Docker image
-echo "Building Docker image..."
-docker build -t yocto-rk1-builder \
-  --build-arg USER_ID=$(id -u) \
-  --build-arg GROUP_ID=$(id -g) \
-  .
+# Script to build BalenaOS for Turing RK1 using balena-build.sh
+# This handles all the Docker containerization and volume mounting properly
 
-# Clean only conf to regenerate for Docker environment
-# Keep sstate-cache and downloads to speed up rebuilds
-echo "Cleaning build configuration for Docker environment..."
+# Machine (default: turing-rk1)
+MACHINE="${1:-turing-rk1}"
+shift || true
+
+# Clean build configuration to regenerate
+echo "Cleaning build configuration..."
 rm -rf build/conf
+# bitbake -c cleanall balena-image
 
-# Run the build in Docker container
-echo "Starting Docker container..."
-docker run -it --rm \
-  -v "$(pwd):/workdir" \
-  -w /workdir \
-  --user $(id -u):$(id -g) \
-  yocto-rk1-builder \
-  bash -c './build.sh'
+# Use balena-build.sh which handles containerized builds properly
+echo "Building BalenaOS for ${MACHINE} using balena-build.sh..."
+./balena-yocto-scripts/build/balena-build.sh \
+  -d "${MACHINE}" \
+  -s "$(pwd)" \
+  "$@"
+
+echo "Build complete! Output files in: build/tmp/deploy/images/${MACHINE}/"
