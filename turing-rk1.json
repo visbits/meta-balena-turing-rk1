@@ -1,0 +1,95 @@
+{
+	"slug": "turing-rk1",
+	"version": 1,
+	"name": "Turing RK1 (NEW)",
+	"arch": "aarch64",
+	"state": "NEW",
+	"instructions": [
+		"Write the OS file you downloaded to your SD card. We recommend using <a href=\"http://www.etcher.io/\">Etcher</a>.",
+		"Insert the freshly burnt SD card into the Turing RK1.",
+		"Connect your Turing RK1 to the internet, then power it up."
+	],
+	"gettingStartedLink": {
+		"windows": "https://www.balena.io/docs/learn/getting-started/turing-rk1/nodejs/",
+		"osx": "https://www.balena.io/docs/learn/getting-started/turing-rk1/nodejs/",
+		"linux": "https://www.balena.io/docs/learn/getting-started/turing-rk1/nodejs/"
+	},
+	"options": [
+		{
+			"isGroup": true,
+			"name": "network",
+			"message": "Network",
+			"options": [
+				{
+					"message": "Network Connection",
+					"name": "network",
+					"type": "list",
+					"choices": [
+						"ethernet",
+						"wifi"
+					]
+				},
+				{
+					"message": "Wifi SSID",
+					"name": "wifiSsid",
+					"type": "text",
+					"when": {
+						"network": "wifi"
+					}
+				},
+				{
+					"message": "Wifi Passphrase",
+					"name": "wifiKey",
+					"type": "password",
+					"when": {
+						"network": "wifi"
+					}
+				}
+			]
+		},
+		{
+			"isGroup": true,
+			"isCollapsible": true,
+			"collapsed": true,
+			"name": "advanced",
+			"message": "Advanced",
+			"options": [
+				{
+					"message": "Check for updates every X minutes",
+					"name": "appUpdatePollInterval",
+					"type": "number",
+					"min": 10,
+					"default": 10
+				}
+			]
+		}
+	],
+	"yocto": {
+		"machine": "turing-rk1",
+		"image": "balena-image",
+		"fstype": "balenaos-img",
+		"version": "yocto-scarthgap",
+		"deployArtifact": "balena-image-turing-rk1.balenaos-img",
+		"compressed": true
+	},
+	"configuration": {
+		"config": {
+			"partition": 4,
+			"path": "/config.json"
+		}
+	},
+	"initialization": {
+		"options": [
+			{
+				"message": "Select a drive",
+				"type": "drive",
+				"name": "drive"
+			}
+		],
+		"operations": [
+			{
+				"command": "burn"
+			}
+		]
+	}
+}

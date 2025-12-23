@@ -1,0 +1,20 @@
+[submodule "layers/poky"]
+	path = layers/poky
+	url = https://git.yoctoproject.org/poky
+	branch = scarthgap
+[submodule "layers/meta-rockchip"]
+	path = layers/meta-rockchip
+	url = https://github.com/radxa/meta-rockchip
+	branch = scarthgap
+[submodule "layers/meta-balena"]
+	path = layers/meta-balena
+	url = https://github.com/balena-os/meta-balena
+	branch = master
+[submodule "layers/meta-openembedded"]
+	path = layers/meta-openembedded
+	url = https://git.openembedded.org/meta-openembedded
+	branch = scarthgap
+[submodule "layers/meta-arm"]
+	path = layers/meta-arm
+	url = https://git.yoctoproject.org/meta-arm
+	branch = scarthgap

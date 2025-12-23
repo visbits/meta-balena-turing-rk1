@@ -1,0 +1,13 @@
+{
+    "git.ignoreLimitWarning": true,
+    "files.exclude": {
+        ".github": true,
+        ".vscode": true,
+        "build/cache*": true,
+        "build/downloads": true,
+        "build/sstate-cache": true,
+        "build/tmp": true,
+        "shared-downloads": true,
+        "turing-rk1": true
+    }
+}

@@ -1,0 +1,58 @@
+# Core functions (clock, power, pin, and watchdog management)
+rockchip-gate-link-clk      # CONFIG_ARCH_ROCKCHIP
+clk-rk3588                  # CONFIG_CLK_RK3588
+cpufreq-dt                  # CONFIG_CPUFREQ_DT
+rockchip-pinctrl            # CONFIG_PINCTRL_ROCKCHIP
+rockchip-pm-domain          # CONFIG_ROCKCHIP_PM_DOMAINS
+reg-fixed-voltage           # CONFIG_REGULATOR_FIXED_VOLTAGE
+rockchip-spi                # CONFIG_SPI_ROCKCHIP
+spi/rk8xx-spi               # CONFIG_MFD_RK8XX_SPI
+rk808-regulator             # CONFIG_REGULATOR_RK808
+rk805-pwrkey                # CONFIG_INPUT_RK805_PWRKEY
+rk3x-i2c                    # CONFIG_I2C_RK3X
+i2c/fan53555-regulator      # CONFIG_REGULATOR_FAN53555
+i2c/rtc-hym8563             # CONFIG_RTC_DRV_HYM8563
+dw_wdt                      # CONFIG_DW_WATCHDOG
+amba/dma-pl330              # CONFIG_PL330_DMA
+
+# Thermal/fan
+rockchip-pwm                # CONFIG_PWM_ROCKCHIP
+pwm-fan                     # CONFIG_SENSORS_PWM_FAN
+rockchip-thermal            # CONFIG_ROCKCHIP_THERMAL
+
+# eMMC
+sdhci-dwcmshc               # CONFIG_MMC_SDHCI_OF_DWCMSHC
+mmc/mmcblk                  # CONFIG_MMC_BLOCK
+
+# Serial
+dw-apb-uart                 # CONFIG_SERIAL_8250_DW
+serial8250                  # CONFIG_SERIAL_8250
+
+# Ethernet
+rk_gmac-dwmac               # CONFIG_DWMAC_ROCKCHIP
+mdio/RTL8211F Gigabit Ethernet # CONFIG_REALTEK_PHY
+
+# USB
+dwc3                        # CONFIG_USB_DWC3
+ehci-platform               # CONFIG_USB_EHCI_HCD_PLATFORM
+ohci-platform               # CONFIG_USB_OHCI_HCD_PLATFORM
+rockchip-usb2phy            # CONFIG_PHY_ROCKCHIP_INNO_USB2
+rockchip-usbdp-phy          # CONFIG_PHY_ROCKCHIP_USBDP
+xhci-hcd                    # CONFIG_USB_XHCI_PLATFORM
+
+# PCIe
+rockchip-dw-pcie            # CONFIG_PCIE_ROCKCHIP_DW
+rockchip-naneng-combphy     # CONFIG_PHY_ROCKCHIP_NANENG_COMBO_PHY
+rockchip-snps-pcie3-phy     # CONFIG_PHY_ROCKCHIP_SNPS_PCIE3
+
+# Video acceleration (WIP in mainline)
+hantro-vpu                  # CONFIG_VIDEO_HANTRO
+
+# GPU (3D and compute only; video and neural acceleration not handled by GPU)
+panthor                     # CONFIG_DRM_PANTHOR
+
+# Misc.
+rk_iommu                    # CONFIG_ROCKCHIP_IOMMU
+rockchip-dfi                # CONFIG_DEVFREQ_EVENT_ROCKCHIP_DFI
+rockchip-gpio               # CONFIG_GPIO_ROCKCHIP
+rockchip-rng                # CONFIG_HW_RANDOM_ROCKCHIP
