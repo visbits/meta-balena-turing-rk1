@@ -1,0 +1,50 @@
+#!/bin/sh
+
+#
+# Script used by hostapp updater to flash bootloader onto internal media
+# For Turing RK1 (Rockchip RK3588)
+#
+
+set -o errexit
+
+# Machine specific bootloader data for RK3588
+
+idbloader_file="idbloader.img"
+idbloader_block_size=512
+idbloader_seek_blocks=64
+
+trust_file="trust.bin"
+trust_block_size=512
+trust_seek_blocks=24576
+
+uboot_file="u-boot.img"
+uboot_block_size=512
+uboot_seek_blocks=16384
+
+# Find the root device (SD card or eMMC)
+device="/dev/"$(findmnt --noheadings --canonicalize --output SOURCE /mnt/boot/ | xargs lsblk -no pkname)
+
+# Process bootloader files in memory address order
+# This is critical for Rockchip secure boot chain
+update_files="idbloader uboot trust"
+
+force_write=false
+
+for i in $update_files; do
+	current_update_file=$(eval echo \$${i}_file)
+	block_size=$(eval echo \$${i}_block_size)
+	seek_blocks=$(eval echo \$${i}_seek_blocks)
+	
+	# Check if file exists and needs updating
+	if [ -f "/resin-boot/$current_update_file" ]; then
+		# Check if current version differs from what's on device
+		if [ "$force_write" = true ] || ! cmp -s /resin-boot/$current_update_file <(dd if=$device bs=$block_size skip=$seek_blocks count=$(stat -c%s /resin-boot/$current_update_file | awk '{print int(($1+'$block_size'-1)/'$block_size')}') 2>/dev/null); then
+			# Write bootloader component
+			# Note: once we start writing, we must complete all subsequent writes
+			# to maintain boot chain integrity on Rockchip hardware
+			force_write=true
+			echo "Flashing $current_update_file to $device"
+			dd if=/resin-boot/$current_update_file of=$device conv=fdatasync seek=$seek_blocks bs=$block_size
+		fi
+	fi
+done
